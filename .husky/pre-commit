@@ -1,0 +1,4 @@
+cd application
+npm run format
+npm run lint:styles
+npm run lint:styles:fix

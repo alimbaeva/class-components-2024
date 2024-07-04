@@ -1,0 +1,4 @@
+cd application
+npm run lint
+npm run lint:fix
+npx validate-branch-name
