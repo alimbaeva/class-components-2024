@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StateI } from '../types/interface';
 import { api } from '../api/api';
+import Results from './Results';
 
 class Search extends Component<object, StateI> {
   constructor(props: object) {
@@ -75,13 +76,7 @@ class Search extends Component<object, StateI> {
         </form>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
-        <ul>
-          {data.map((animal) => (
-            <li key={animal.uid}>
-              {animal.name} - Earth Animal: {animal.earthAnimal ? 'Yes' : 'No'}
-            </li>
-          ))}
-        </ul>
+        <Results data={data} />
       </div>
     );
   }

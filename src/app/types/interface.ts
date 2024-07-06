@@ -26,3 +26,7 @@ export interface StateI {
   loading: boolean;
   error: string | null;
 }
+
+export interface ResultsProps {
+  data: SearchResponseI[];
+}
