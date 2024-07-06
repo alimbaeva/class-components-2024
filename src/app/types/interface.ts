@@ -22,6 +22,7 @@ export interface SearchResponseI {
 
 export interface StateI {
   data: SearchResponseI[];
+  inputValue: string;
   loading: boolean;
   error: string | null;
 }

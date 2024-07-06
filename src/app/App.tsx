@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import AnimalSearch from './components/Api';
+import Search from './components/Search';
 
 class App extends Component {
   render() {
     return (
       <div>
         {' '}
-        <AnimalSearch />{' '}
+        <Search />{' '}
       </div>
     );
   }

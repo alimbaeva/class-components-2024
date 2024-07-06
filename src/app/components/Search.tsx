@@ -6,6 +6,7 @@ class Search extends Component<object, StateI> {
   constructor(props: object) {
     super(props);
     this.state = {
+      inputValue: '',
       data: [],
       loading: false,
       error: null,
@@ -24,7 +25,7 @@ class Search extends Component<object, StateI> {
         body: {
           pageNumber: 0,
           pageSize: 10,
-          name: 'cat',
+          name: this.state.inputValue,
           earthAnimal: true,
         },
         endPoint: 'animal/search',
@@ -44,12 +45,34 @@ class Search extends Component<object, StateI> {
     }
   };
 
+  // Input change handler
+  handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ inputValue: event.target.value });
+  };
+
+  // Function for processing form submission or receiving input value
+  handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    this.fetchAnimals();
+  };
+
   render() {
     const { data, loading, error } = this.state;
 
     return (
       <div>
         <h1>Animal Search</h1>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Input:
+            <input
+              type="text"
+              value={this.state.inputValue}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
         <ul>
