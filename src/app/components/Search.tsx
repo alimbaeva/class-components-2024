@@ -15,7 +15,10 @@ class Search extends Component<object, StateI> {
   }
 
   componentDidMount() {
-    this.fetchAnimals();
+    const savedInputValue = localStorage.getItem('inputValue');
+    if (savedInputValue) {
+      this.setState({ inputValue: savedInputValue }, this.fetchAnimals);
+    }
   }
 
   fetchAnimals = async () => {
@@ -54,6 +57,7 @@ class Search extends Component<object, StateI> {
   // Function for processing form submission or receiving input value
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    localStorage.setItem('inputValue', this.state.inputValue);
     this.fetchAnimals();
   };
 
