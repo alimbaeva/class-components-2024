@@ -61,27 +61,28 @@ class Search extends Component<object, StateI> {
     this.fetchAnimals();
   };
 
-  render() {
+  render(): React.ReactNode {
     const { data, loading, error } = this.state;
 
     return (
-      <div>
-        <h1>Animal Search</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Input:
+      <section>
+        <div className="search-block">
+          <form className="search-form" onSubmit={this.handleSubmit}>
+            <label htmlFor="inputSearch">Animal:</label>
+
             <input
+              id="inputSearch"
               type="text"
               value={this.state.inputValue}
               onChange={this.handleInputChange}
             />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <Results data={data} />
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
-        <Results data={data} />
-      </div>
+      </section>
     );
   }
 }

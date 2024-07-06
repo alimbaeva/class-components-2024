@@ -27,7 +27,6 @@ async function fetchPost(
 export const api = {
   async search(request: RequestI) {
     const response = await fetchPost(request.body, request.endPoint);
-    console.log(response);
     return response;
   },
 };
