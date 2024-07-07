@@ -66,8 +66,30 @@
   padding: 10px;
 }
 
+.answer-item p {
+  margin: 6px;
+}
+
 .answer-item:nth-child(odd) {
   background-color: rgb(190, 187, 187);
+}
+
+.errorBtn {
+  min-width: 60%;
+  padding: 10px;
+  background-color: white;
+  color: red;
+  font-weight: 700;
+}
+
+.errorBtn:hover {
+  background-color: black;
+}
+
+.error-throw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 430px) {
@@ -75,6 +97,7 @@
     width: 95%;
   }
 
+  .errorBtn,
   .search-form,
   .answer-block,
   .search-form {

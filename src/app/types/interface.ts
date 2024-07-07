@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface DataBodyI {
   pageNumber: number;
   pageSize: number;
@@ -29,4 +31,12 @@ export interface StateI {
 
 export interface ResultsProps {
   data: SearchResponseI[];
+}
+
+export interface ErrorBoundaryProps {
+  children: ReactNode;
+}
+
+export interface ErrorBoundaryState {
+  hasError: boolean;
 }

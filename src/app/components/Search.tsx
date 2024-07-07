@@ -30,7 +30,7 @@ class Search extends Component<object, StateI> {
         body: {
           pageNumber: 0,
           pageSize: 10,
-          name: this.state.inputValue,
+          name: this.state.inputValue.trim(),
           earthAnimal: true,
         },
         endPoint: 'animal/search',
@@ -58,8 +58,12 @@ class Search extends Component<object, StateI> {
   // Function for processing form submission or receiving input value
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    localStorage.setItem('inputValue', this.state.inputValue);
+    localStorage.setItem('inputValue', this.state.inputValue.trim());
     this.fetchAnimals();
+  };
+
+  handleErrorButtonClick = () => {
+    throw new Error('This is a test error');
   };
 
   render(): React.ReactNode {
@@ -87,6 +91,11 @@ class Search extends Component<object, StateI> {
             <p>Error: {error}</p>
           </div>
         )}
+        <div className="search-block error-throw">
+          <button className="errorBtn" onClick={this.handleErrorButtonClick}>
+            Throw Error
+          </button>
+        </div>
       </section>
     );
   }
