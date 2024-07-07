@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StateI } from '../types/interface';
 import { api } from '../api/api';
 import Results from './Results';
+import Loading from './Loading';
 
 class Search extends Component<object, StateI> {
   constructor(props: object) {
@@ -80,8 +81,12 @@ class Search extends Component<object, StateI> {
           </form>
         </div>
         <Results data={data} />
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error}</p>}
+        {loading && <Loading />}
+        {error && (
+          <div className="search-block">
+            <p>Error: {error}</p>
+          </div>
+        )}
       </section>
     );
   }
