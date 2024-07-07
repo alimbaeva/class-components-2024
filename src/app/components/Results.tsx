@@ -5,6 +5,14 @@ class Results extends Component<ResultsProps> {
   render(): React.ReactNode {
     const { data } = this.props;
 
+    if (!data.length) {
+      return (
+        <h2 className="emty-message">
+          Unfortunately, there is no data available for your request.
+        </h2>
+      );
+    }
+
     return (
       <div className="search-block">
         <ul className="answer-block">

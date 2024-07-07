@@ -92,6 +92,11 @@
   align-items: center;
 }
 
+.emty-message {
+  text-align: center;
+  margin: 25px;
+}
+
 @media screen and (max-width: 430px) {
   .search-block {
     width: 95%;
