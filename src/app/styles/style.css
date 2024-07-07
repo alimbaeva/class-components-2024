@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+.header {
+  border-bottom: 1px solid rgb(190, 187, 187);
+}
+
 .search-block {
   width: 80%;
   margin: 0 auto;
@@ -44,4 +48,36 @@
   padding: 10px;
   background-color: white;
   font-weight: 700;
+}
+
+.search-form button:hover {
+  background-color: black;
+  color: azure;
+}
+
+.answer-block {
+  padding: 0;
+  list-style: none;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.answer-item {
+  padding: 10px;
+}
+
+.answer-item:nth-child(odd) {
+  background-color: rgb(190, 187, 187);
+}
+
+@media screen and (max-width: 430px) {
+  .search-block {
+    width: 95%;
+  }
+
+  .search-form,
+  .answer-block,
+  .search-form {
+    width: 100%;
+  }
 }

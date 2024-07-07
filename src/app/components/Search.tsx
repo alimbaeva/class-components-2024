@@ -66,7 +66,7 @@ class Search extends Component<object, StateI> {
 
     return (
       <section>
-        <div className="search-block">
+        <div className="search-block header">
           <form className="search-form" onSubmit={this.handleSubmit}>
             <label htmlFor="inputSearch">Animal:</label>
 
