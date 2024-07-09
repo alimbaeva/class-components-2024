@@ -27,6 +27,7 @@ export interface StateI {
   inputValue: string;
   loading: boolean;
   error: string | null;
+  isError: boolean;
 }
 
 export interface ResultsProps {

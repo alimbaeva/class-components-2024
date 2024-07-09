@@ -12,6 +12,7 @@ class Search extends Component<object, StateI> {
       data: [],
       loading: false,
       error: null,
+      isError: false,
     };
   }
 
@@ -69,6 +70,11 @@ class Search extends Component<object, StateI> {
   render(): React.ReactNode {
     const { data, loading, error } = this.state;
 
+    if (this.state.isError) {
+      this.handleErrorButtonClick();
+      return;
+    }
+
     return (
       <section>
         <div className="search-block header">
@@ -92,7 +98,10 @@ class Search extends Component<object, StateI> {
           </div>
         )}
         <div className="search-block error-throw">
-          <button className="errorBtn" onClick={this.handleErrorButtonClick}>
+          <button
+            className="errorBtn"
+            onClick={() => this.setState({ isError: true })}
+          >
             Throw Error
           </button>
         </div>
