@@ -44,5 +44,12 @@
   "validate-branch-name": {
     "pattern": "^(init|feat|fix|refactor|docs|chore)/[\\S]+$",
     "errorMsg": "Your current branch name is invalid"
+  },
+  "husky": {
+  "hooks": {
+    "pre-commit": "npm run lint && npm run format:fix && npm run lint:styles && npm run lint:styles:fix && npm test",
+    "pre-push": "npm test",
+    "commit-msg": "npx validate-branch-name"
   }
+}
 }
