@@ -50,8 +50,7 @@
     "errorMsg": "Your current branch name is invalid"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint . --ext",
+    "*.{ts,tsx,js,jsx}": [
       "eslint --fix",
       "prettier --write"
     ]
