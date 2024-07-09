@@ -49,6 +49,13 @@
     "pattern": "[\\S]+$",
     "errorMsg": "Your current branch name is invalid"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint . --ext",
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && npm run format:fix && npm run lint:styles && npm run lint:styles:fix && npm test",
