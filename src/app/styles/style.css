@@ -9,9 +9,12 @@
   border-bottom: 1px solid rgb(190, 187, 187);
 }
 
-.search-block {
+.container {
   width: 80%;
   margin: 0 auto;
+}
+
+.search-block {
   padding: 40px 25px;
 }
 
@@ -98,7 +101,7 @@
 }
 
 @media screen and (max-width: 430px) {
-  .search-block {
+  .scontainer {
     width: 95%;
   }
 

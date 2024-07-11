@@ -11,7 +11,7 @@ const Results: React.FC<ResultsProps> = ({ data }) => {
   }
 
   return (
-    <div className="search-block">
+    <div className="container search-block">
       <ul className="answer-block">
         {data.map((animal) => (
           <li key={animal.uid} className="answer-item">

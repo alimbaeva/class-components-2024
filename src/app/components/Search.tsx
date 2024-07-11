@@ -72,7 +72,7 @@ const Search: React.FC = () => {
 
   return (
     <section>
-      <div className="search-block header">
+      <div className="container search-block header">
         <form className="search-form" onSubmit={handleSubmit}>
           <label htmlFor="inputSearch">Animal:</label>
           <input
@@ -91,7 +91,7 @@ const Search: React.FC = () => {
           <p>Error: {error}</p>
         </div>
       )}
-      <div className="search-block error-throw">
+      <div className="container search-block error-throw">
         <button className="errorBtn" onClick={() => setIsError(true)}>
           Throw Error
         </button>
