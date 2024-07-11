@@ -1,37 +1,28 @@
-import React, { Component } from 'react';
-import { StateI } from '../types/interface';
+import React, { useEffect, useState } from 'react';
 import { api } from '../api/api';
 import Results from './Results';
 import Loading from './Loading';
+import { SearchResponseI } from '../types/interface';
 
-class Search extends Component<object, StateI> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      inputValue: '',
-      data: [],
-      loading: false,
-      error: null,
-      isError: false,
-    };
-  }
+const Search: React.FC = () => {
+  const [inputValue, setInputValue] = useState(
+    localStorage.getItem('inputValue') ?? '',
+  );
+  const [data, setData] = useState<SearchResponseI[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isError, setIsError] = useState(false);
 
-  componentDidMount() {
-    const savedInputValue = localStorage.getItem('inputValue');
-    if (savedInputValue) {
-      this.setState({ inputValue: savedInputValue }, this.fetchAnimals);
-    }
-  }
-
-  fetchAnimals = async () => {
-    this.setState({ loading: true, error: null });
+  const fetchAnimals = async () => {
+    setLoading(true);
+    setError(null);
 
     try {
       const response = await api.search({
         body: {
           pageNumber: 0,
           pageSize: 10,
-          name: this.state.inputValue.trim(),
+          name: inputValue.trim(),
           earthAnimal: true,
         },
         endPoint: 'animal/search',
@@ -41,73 +32,72 @@ class Search extends Component<object, StateI> {
         throw new Error(`HTTP error! status: ${response}`);
       }
 
-      this.setState({ data: response.animals, loading: false });
+      setData(response.animals);
+      setLoading(false);
     } catch (error) {
       if (error instanceof Error) {
-        this.setState({ loading: false, error: error.message });
+        setError(error.message);
+        setLoading(false);
       } else {
-        this.setState({ loading: false, error: 'An unknown error occurred' });
+        setError('An unknown error occurred');
+        setLoading(false);
       }
     }
   };
 
   // Input change handler
-  handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ inputValue: event.target.value });
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
   };
 
   // Function for processing form submission or receiving input value
-  handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    localStorage.setItem('inputValue', this.state.inputValue.trim());
-    this.fetchAnimals();
+    localStorage.setItem('inputValue', inputValue.trim());
+    fetchAnimals();
   };
 
-  handleErrorButtonClick = () => {
+  const handleErrorButtonClick = () => {
     throw new Error('This is a test error');
   };
 
-  render(): React.ReactNode {
-    const { data, loading, error } = this.state;
+  useEffect(() => {
+    fetchAnimals();
+  }, []);
 
-    if (this.state.isError) {
-      this.handleErrorButtonClick();
-      return;
-    }
-
-    return (
-      <section>
-        <div className="search-block header">
-          <form className="search-form" onSubmit={this.handleSubmit}>
-            <label htmlFor="inputSearch">Animal:</label>
-
-            <input
-              id="inputSearch"
-              type="text"
-              value={this.state.inputValue}
-              onChange={this.handleInputChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-        <Results data={data} />
-        {loading && <Loading />}
-        {error && (
-          <div className="search-block">
-            <p>Error: {error}</p>
-          </div>
-        )}
-        <div className="search-block error-throw">
-          <button
-            className="errorBtn"
-            onClick={() => this.setState({ isError: true })}
-          >
-            Throw Error
-          </button>
-        </div>
-      </section>
-    );
+  if (isError) {
+    handleErrorButtonClick();
+    return;
   }
-}
+
+  return (
+    <section>
+      <div className="search-block header">
+        <form className="search-form" onSubmit={handleSubmit}>
+          <label htmlFor="inputSearch">Animal:</label>
+          <input
+            id="inputSearch"
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <Results data={data} />
+      {loading && <Loading />}
+      {error && (
+        <div className="search-block">
+          <p>Error: {error}</p>
+        </div>
+      )}
+      <div className="search-block error-throw">
+        <button className="errorBtn" onClick={() => setIsError(true)}>
+          Throw Error
+        </button>
+      </div>
+    </section>
+  );
+};
 
 export default Search;
