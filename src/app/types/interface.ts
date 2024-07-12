@@ -41,3 +41,7 @@ export interface ErrorBoundaryState {
 export interface CardProps {
   data: ResData;
 }
+
+export interface SearchProps {
+  handleSearch: (value: string) => void;
+}
