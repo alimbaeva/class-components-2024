@@ -60,12 +60,13 @@
 
 .answer-block {
   padding: 0;
-  list-style: none;
   width: 300px;
   margin: 0 auto;
 }
 
 .answer-item {
+  display: block;
+  width: 100%;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #000;

@@ -13,11 +13,11 @@ const Results: React.FC<ResultsProps> = ({ data }) => {
 
   return (
     <div className="container search-block">
-      <ul className="answer-block">
+      <div className="answer-block">
         {data.map((people) => (
           <Card key={people.url} data={people} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

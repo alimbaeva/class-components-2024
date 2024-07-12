@@ -6,28 +6,25 @@ import { api } from '../api/api';
 import Loading from '../components/Loading';
 
 const Main: React.FC = () => {
-  const [inputValue, setInputValue] = useState(
-    localStorage.getItem('inputValue') ?? '',
-  );
   const [data, setData] = useState<ResData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isError, setIsError] = useState(false);
 
-  const fetchAnimals = async () => {
+  const fetchAnimals = async (value: string) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = inputValue
-        ? await api.findPeopleByName(inputValue)
+      const response = value
+        ? await api.findPeopleByName(value)
         : await api.getPeoples(1);
 
       if (!response) {
         throw new Error(`HTTP error! status: ${response}`);
       }
 
-      setData(inputValue ? response : response.results);
+      setData(value ? response : response.results);
       setLoading(false);
     } catch (error) {
       if (error instanceof Error) {
@@ -42,8 +39,7 @@ const Main: React.FC = () => {
 
   const handleSearch = (value: string) => {
     console.log(value);
-    setInputValue(value);
-    fetchAnimals();
+    fetchAnimals(value);
   };
 
   const handleErrorButtonClick = () => {
@@ -51,7 +47,7 @@ const Main: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchAnimals();
+    fetchAnimals(localStorage.getItem('inputValue') ?? '');
   }, []);
 
   if (isError) {
