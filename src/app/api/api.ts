@@ -1,33 +1,73 @@
-import { DataBodyI, RequestI } from '../types/interface';
+import { ResData } from '../types/interface';
 
-const APIPATH = 'https://stapi.co/api/v1/rest/';
+const APIPATH = 'https://swapi.dev/api/';
 
 const defaultHeaders = (headers: object) => {
   return {
     Accept: 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
     ...headers,
   };
 };
 
-async function fetchPost(
-  body: DataBodyI,
+async function fetchGet(
   endpoint: string,
+  params: object = {},
   headers: object = {},
 ) {
-  const response = await fetch(`${APIPATH}${endpoint}`, {
-    method: 'POST',
+  const url = new URL(`${APIPATH}${endpoint}`);
+  Object.entries(params).forEach(([key, value]) =>
+    url.searchParams.append(key, value.toString()),
+  );
+
+  const response = await fetch(url.toString(), {
+    method: 'GET',
     headers: defaultHeaders(headers),
-    body: new URLSearchParams(body as never),
   });
 
   return response.json();
 }
 
+async function getAllPages(endpoint: string) {
+  let results: ResData[] = [];
+  let nextPage: string | null = endpoint;
+
+  while (nextPage) {
+    const response = await fetchGet(nextPage.replace(APIPATH, ''));
+    results = results.concat(response.results);
+    nextPage = response.next;
+  }
+
+  return results;
+}
+
+async function fetchByIdOrUrl(urlOrId: string) {
+  const endpoint = urlOrId.startsWith('http')
+    ? urlOrId.replace(APIPATH, '')
+    : `${urlOrId}/`;
+  const response = await fetchGet(endpoint);
+  return response;
+}
+
 export const api = {
-  async search(request: RequestI) {
-    const response = await fetchPost(request.body, request.endPoint);
+  async getPeoples(page: number = 1) {
+    const response = await fetchGet('people/', { page });
     console.log(response);
     return response;
+  },
+
+  async getPeopleIdOrUrl(urlOrId: string) {
+    const response = await fetchByIdOrUrl(urlOrId);
+    console.log(response);
+    return response;
+  },
+
+  async findPeopleByName(name: string) {
+    const people = await getAllPages('people/');
+    const person = people.filter((p) =>
+      p.name.toLowerCase().includes(name.toLowerCase()),
+    );
+    console.log(person);
+    return person;
   },
 };

@@ -13,10 +13,10 @@ const Results: React.FC<ResultsProps> = ({ data }) => {
   return (
     <div className="container search-block">
       <ul className="answer-block">
-        {data.map((animal) => (
-          <li key={animal.uid} className="answer-item">
-            <p>{animal.name}</p>
-            <p>Earth Animal: {animal.earthAnimal ? 'Yes' : 'No'}</p>
+        {data.map((people) => (
+          <li key={people.url} id={people.url} className="answer-item">
+            <p>{people.name}</p>
+            <p>Gender : {people.gender ? 'Yes' : 'No'}</p>
           </li>
         ))}
       </ul>

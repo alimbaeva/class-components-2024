@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { api } from '../api/api';
 import Results from './Results';
 import Loading from './Loading';
-import { SearchResponseI } from '../types/interface';
+import { ResData } from '../types/interface';
 
 const Search: React.FC = () => {
   const [inputValue, setInputValue] = useState(
     localStorage.getItem('inputValue') ?? '',
   );
-  const [data, setData] = useState<SearchResponseI[]>([]);
+  const [data, setData] = useState<ResData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isError, setIsError] = useState(false);
@@ -18,21 +18,13 @@ const Search: React.FC = () => {
     setError(null);
 
     try {
-      const response = await api.search({
-        body: {
-          pageNumber: 0,
-          pageSize: 10,
-          name: inputValue.trim(),
-          earthAnimal: true,
-        },
-        endPoint: 'animal/search',
-      });
+      const response = await api.getPeoples(1);
 
       if (!response) {
         throw new Error(`HTTP error! status: ${response}`);
       }
 
-      setData(response.animals);
+      setData(response.results);
       setLoading(false);
     } catch (error) {
       if (error instanceof Error) {
