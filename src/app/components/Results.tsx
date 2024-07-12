@@ -1,5 +1,6 @@
 import React from 'react';
 import { ResultsProps } from '../types/interface';
+import Card from './Card';
 
 const Results: React.FC<ResultsProps> = ({ data }) => {
   if (!data.length) {
@@ -14,10 +15,7 @@ const Results: React.FC<ResultsProps> = ({ data }) => {
     <div className="container search-block">
       <ul className="answer-block">
         {data.map((people) => (
-          <li key={people.url} id={people.url} className="answer-item">
-            <p>{people.name}</p>
-            <p>Gender : {people.gender}</p>
-          </li>
+          <Card key={people.url} data={people} />
         ))}
       </ul>
     </div>

@@ -68,7 +68,7 @@ const Search: React.FC = () => {
     <section>
       <div className="container search-block header">
         <form className="search-form" onSubmit={handleSubmit}>
-          <label htmlFor="inputSearch">Animal:</label>
+          <label htmlFor="inputSearch">People:</label>
           <input
             id="inputSearch"
             type="text"
