@@ -18,13 +18,15 @@ const Search: React.FC = () => {
     setError(null);
 
     try {
-      const response = await api.getPeoples(1);
+      const response = inputValue
+        ? await api.findPeopleByName(inputValue)
+        : await api.getPeoples(1);
 
       if (!response) {
         throw new Error(`HTTP error! status: ${response}`);
       }
 
-      setData(response.results);
+      setData(inputValue ? response : response.results);
       setLoading(false);
     } catch (error) {
       if (error instanceof Error) {

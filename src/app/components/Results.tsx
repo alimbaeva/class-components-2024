@@ -16,7 +16,7 @@ const Results: React.FC<ResultsProps> = ({ data }) => {
         {data.map((people) => (
           <li key={people.url} id={people.url} className="answer-item">
             <p>{people.name}</p>
-            <p>Gender : {people.gender ? 'Yes' : 'No'}</p>
+            <p>Gender : {people.gender}</p>
           </li>
         ))}
       </ul>
