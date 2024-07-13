@@ -29,6 +29,7 @@ const Results: React.FC<ResultsProps> = ({
 
   return (
     <div
+      data-testid="search-block"
       role="button"
       tabIndex={0}
       className="search-block"
