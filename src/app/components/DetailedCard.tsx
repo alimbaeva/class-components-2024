@@ -16,7 +16,9 @@ const DetailedDataCard: React.FC<CardPropsDetail> = ({
 
   useEffect(() => {
     const currentUrl = location.pathname + location.search.split('&detail')[0];
-    navigate(`${currentUrl}&detail=${urlArr[urlArr.length - 2]}`);
+    navigate(
+      `${currentUrl}${currentUrl.length <= 1 ? '?' : '&'}detail=${urlArr[urlArr.length - 2]}`,
+    );
   }, []);
 
   return (

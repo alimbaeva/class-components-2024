@@ -20,8 +20,16 @@ const Pagination: React.FC<PropsPagination> = ({
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    const currentUrl = location.pathname + location.search.split('&')[0];
-    navigate(`${currentUrl}&page=${page}`);
+    let currentUrl = '';
+    if (location.search.split('?detail').length >= 2) {
+      currentUrl = location.pathname + location.search.split('?detail')[0];
+    } else if (location.search.split('?page').length >= 2) {
+      currentUrl = location.pathname + location.search.split('?page')[0];
+    } else {
+      currentUrl = location.pathname + location.search.split('&')[0];
+    }
+
+    navigate(`${currentUrl}${currentUrl.length <= 1 ? '?' : '&'}page=${page}`);
     handleSetPage(page);
   };
 
