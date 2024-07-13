@@ -28,6 +28,8 @@ export interface DataBodyI {
 
 export interface ResultsProps {
   data: ResData[];
+  handleCard: (data: ResData) => void;
+  handleCloseDetailedCard: () => void;
 }
 
 export interface ErrorBoundaryProps {
@@ -40,6 +42,12 @@ export interface ErrorBoundaryState {
 
 export interface CardProps {
   data: ResData;
+  handleCard: (data: ResData) => void;
+}
+
+export interface CardPropsDetail {
+  data: ResData;
+  handleCloseDetailedCard: () => void;
 }
 
 export interface SearchProps {

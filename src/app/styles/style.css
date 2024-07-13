@@ -16,6 +16,9 @@
 
 .search-block {
   padding: 40px 25px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .search-form {
@@ -107,6 +110,19 @@
 .emty-message {
   text-align: center;
   margin: 25px;
+}
+
+.result-block {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-item {
+  width: 60%;
+  height: 100%;
+  background-color: aliceblue;
 }
 
 @media screen and (max-width: 430px) {

@@ -4,14 +4,17 @@ import Search from '../components/Search';
 import { ResData } from '../types/interface';
 import { api } from '../api/api';
 import Loading from '../components/Loading';
+import DetailedDataCard from '../components/DetailedCard.tsx';
 
 const Main: React.FC = () => {
   const [data, setData] = useState<ResData[]>([]);
+  const [detailedData, setdetailedData] = useState<ResData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isError, setIsError] = useState(false);
 
   const fetchAnimals = async (value: string) => {
+    setdetailedData(null);
     setLoading(true);
     setError(null);
 
@@ -38,8 +41,17 @@ const Main: React.FC = () => {
   };
 
   const handleSearch = (value: string) => {
-    console.log(value);
     fetchAnimals(value);
+  };
+
+  const handleCard = (data: ResData) => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 300);
+    setdetailedData(data);
+  };
+
+  const handleCloseDetailedCard = () => {
+    setdetailedData(null);
   };
 
   const handleErrorButtonClick = () => {
@@ -58,7 +70,19 @@ const Main: React.FC = () => {
   return (
     <>
       <Search handleSearch={handleSearch} />
-      <Results data={data} />
+      <section className="container result-block">
+        <Results
+          data={data}
+          handleCard={handleCard}
+          handleCloseDetailedCard={handleCloseDetailedCard}
+        />
+        {detailedData && !loading && (
+          <DetailedDataCard
+            data={detailedData}
+            handleCloseDetailedCard={handleCloseDetailedCard}
+          />
+        )}
+      </section>
       {loading && <Loading />}
       {error && (
         <div className="search-block">
