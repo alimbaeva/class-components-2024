@@ -1,5 +1,6 @@
 import React from 'react';
 import { CardPropsDetail } from '../types/interface';
+import { format } from 'date-fns';
 import '../styles/detailedDataCard.css';
 
 const DetailedDataCard: React.FC<CardPropsDetail> = ({
@@ -7,6 +8,8 @@ const DetailedDataCard: React.FC<CardPropsDetail> = ({
   handleCloseDetailedCard,
 }) => {
   const urlArr = data.url.split('/');
+  const date = new Date(data.created);
+  const formattedDate = format(date, 'dd.MM.yyyy HH:mm:ss');
 
   return (
     <section className="detailed-data-card">
@@ -35,13 +38,10 @@ const DetailedDataCard: React.FC<CardPropsDetail> = ({
           <span>Height :</span> {data.height}
         </p>
         <p>
-          <span>Home world :</span> {data.homeworld}
-        </p>
-        <p>
           <span>Skin color :</span> {data.skin_color}
         </p>
         <p>
-          <span>Created :</span> {data.created}
+          <span>Created :</span> {formattedDate}
         </p>
       </div>
     </section>
