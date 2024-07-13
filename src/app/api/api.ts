@@ -52,13 +52,11 @@ async function fetchByIdOrUrl(urlOrId: string) {
 export const api = {
   async getPeoples(page: number = 1) {
     const response = await fetchGet('people/', { page });
-    console.log(response);
     return response;
   },
 
   async getPeopleIdOrUrl(urlOrId: string) {
     const response = await fetchByIdOrUrl(urlOrId);
-    console.log(response);
     return response;
   },
 
@@ -67,7 +65,6 @@ export const api = {
     const person = people.filter((p) =>
       p.name.toLowerCase().includes(name.toLowerCase()),
     );
-    console.log(person);
     return person;
   },
 };

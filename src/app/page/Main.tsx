@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Results from '../components/Results';
 import Search from '../components/Search';
 import { ResData } from '../types/interface';
@@ -11,7 +11,6 @@ import Pagination from '../components/Pagination.tsx';
 const Main: React.FC = () => {
   const showData = 10;
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [data, setData] = useState<ResData[]>([]);
   const [allCount, setAllCount] = useState<number>(0);
@@ -56,10 +55,7 @@ const Main: React.FC = () => {
   const handleSearch = (value: string) => {
     setIsSearchResult(false);
     fetchData(value);
-    const queryParams = new URLSearchParams();
-    console.log(queryParams);
-    console.log(location.search);
-    navigate(`/?${queryParams.toString()}`);
+    navigate(`?search=${value.trim()}`);
   };
 
   const handleCard = (data: ResData) => {
@@ -73,6 +69,9 @@ const Main: React.FC = () => {
   };
 
   const handleSetPage = (page: number) => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 300);
+    setdetailedData(null);
     if (isSearchResult) {
       setCurrentPage(page);
     } else {
@@ -87,6 +86,11 @@ const Main: React.FC = () => {
 
   useEffect(() => {
     fetchData(localStorage.getItem('inputValue') ?? '');
+    navigate(
+      localStorage.getItem('inputValue')
+        ? `?search=${localStorage.getItem('inputValue')}`
+        : '',
+    );
   }, []);
 
   if (isError) {

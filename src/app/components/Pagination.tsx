@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/pagination.css';
 
 interface PropsPagination {
@@ -14,13 +14,14 @@ const Pagination: React.FC<PropsPagination> = ({
   isSearchResult,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(allCount / 10);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    const pageUrl = page === 1 ? '' : `?page=${page}`;
-    navigate(`${pageUrl}`);
+    const currentUrl = location.pathname + location.search.split('&')[0];
+    navigate(`${currentUrl}&page=${page}`);
     handleSetPage(page);
   };
 
