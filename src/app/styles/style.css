@@ -136,4 +136,10 @@
   .search-form {
     width: 100%;
   }
+
+  .result-block {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

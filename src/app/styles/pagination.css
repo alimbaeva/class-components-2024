@@ -25,3 +25,15 @@
 .activ {
   border: 2px solid rgb(90, 142, 90);
 }
+
+@media screen and (max-width: 630px) {
+  .btn-item,
+  .btn-prev,
+  .btn-next {
+    margin: 5px;
+  }
+
+  .pagination-block {
+    flex-wrap: wrap;
+  }
+}

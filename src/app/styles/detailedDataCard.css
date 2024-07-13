@@ -34,3 +34,10 @@
   background-color: black;
   color: aliceblue;
 }
+
+@media screen and (max-width: 430px) {
+  .detailed-data-card {
+    border-left: none;
+    padding-left: 0;
+  }
+}
