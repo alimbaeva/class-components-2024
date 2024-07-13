@@ -21,11 +21,15 @@ const Pagination: React.FC<PropsPagination> = ({
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     let currentUrl = '';
-    if (location.search.split('?detail').length >= 2) {
+    if (location && location.search && location.search.includes('?detail')) {
       currentUrl = location.pathname + location.search.split('?detail')[0];
-    } else if (location.search.split('?page').length >= 2) {
+    } else if (
+      location &&
+      location.search &&
+      location.search.split('?page').length >= 2
+    ) {
       currentUrl = location.pathname + location.search.split('?page')[0];
-    } else {
+    } else if (location && location.search) {
       currentUrl = location.pathname + location.search.split('&')[0];
     }
 
