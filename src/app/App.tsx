@@ -7,7 +7,7 @@ import Main from './page/Main';
 const App: React.FC = () => {
   return (
     <Router>
-      <main>
+      <main data-testid="app-content">
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="*" element={<Page404 />} />
