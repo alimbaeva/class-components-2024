@@ -7,8 +7,42 @@ import { vi } from 'vitest';
 const mockHandleCard = vi.fn();
 
 const mockData = [
-  { url: '1', name: 'Person 1' },
-  { url: '2', name: 'Person 2' },
+  {
+    name: 'Person 1',
+    gender: 'male',
+    url: '1',
+    birth_year: 'unknown',
+    created: '2024-07-13T12:00:00Z',
+    edited: '2024-07-13T12:00:00Z',
+    eye_color: 'blue',
+    hair_color: 'black',
+    height: '180',
+    mass: '75',
+    skin_color: 'light',
+    homeworld: 'http://example.com/planet',
+    films: [],
+    species: [],
+    starships: [],
+    vehicles: [],
+  },
+  {
+    name: 'Person 2',
+    gender: 'male',
+    url: '2',
+    birth_year: 'unknown',
+    created: '2024-07-13T12:00:00Z',
+    edited: '2024-07-13T12:00:00Z',
+    eye_color: 'blue',
+    hair_color: 'black',
+    height: '180',
+    mass: '75',
+    skin_color: 'light',
+    homeworld: 'http://example.com/planet',
+    films: [],
+    species: [],
+    starships: [],
+    vehicles: [],
+  },
 ];
 
 describe('Results component', () => {

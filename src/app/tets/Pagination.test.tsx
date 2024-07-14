@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { MemoryRouter, useLocation, useNavigate } from 'react-router-dom';
 import Pagination from '../components/Pagination';
-import { vi } from 'vitest';
+import { vi, Mock } from 'vitest';
 
 vi.mock('react-router-dom', () => {
   const actual = vi.importActual('react-router-dom');
@@ -20,8 +20,8 @@ const mockUseLocation = vi.fn();
 const mockUseNavigate = vi.fn();
 
 beforeEach(() => {
-  (useLocation as vi.Mock).mockReturnValue(mockUseLocation);
-  (useNavigate as vi.Mock).mockReturnValue(mockUseNavigate);
+  (useLocation as Mock).mockReturnValue(mockUseLocation);
+  (useNavigate as Mock).mockReturnValue(mockUseNavigate);
 });
 
 afterEach(() => {

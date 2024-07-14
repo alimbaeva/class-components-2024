@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
+import { vi, Mock } from 'vitest';
 import DetailedDataCard from '../components/DetailedCard';
 import { CardPropsDetail } from '../types/interface';
 import { MemoryRouter, useNavigate, useLocation } from 'react-router-dom';
@@ -52,8 +52,8 @@ const detailedCardProps: CardPropsDetail = {
 
 describe('DetailedDataCard', () => {
   beforeEach(() => {
-    (useNavigate as vi.Mock).mockReturnValue(mockNavigate);
-    (useLocation as vi.Mock).mockReturnValue(mockUseLocation);
+    (useNavigate as Mock).mockReturnValue(mockNavigate);
+    (useLocation as Mock).mockReturnValue(mockUseLocation);
   });
 
   afterEach(() => {

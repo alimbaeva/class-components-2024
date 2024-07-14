@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { vi } from 'vitest';
+import { vi, Mock } from 'vitest';
 import Main from '../page/Main';
 import { api } from '../api/api';
 
@@ -13,7 +13,7 @@ describe('Main component', () => {
   });
 
   test('renders Main component successfully', async () => {
-    (api.getPeoples as vi.Mock).mockResolvedValue({
+    (api.getPeoples as Mock).mockResolvedValue({
       results: [],
       count: 0,
     });
@@ -36,7 +36,7 @@ describe('Main component', () => {
       { url: '2', name: 'Person 2' },
     ];
 
-    (api.findPeopleByName as vi.Mock).mockResolvedValue(mockResults);
+    (api.findPeopleByName as Mock).mockResolvedValue(mockResults);
 
     render(
       <MemoryRouter>
