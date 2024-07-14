@@ -7,7 +7,7 @@ describe('App with ErrorBoundary', () => {
   it('renders App within ErrorBoundary', () => {
     const { getByTestId } = render(<App />);
 
-    // Проверяем, что компонент App был успешно отрендерен
+    // Checking that the App component was successfully rendered
     expect(getByTestId('app-content')).toBeTruthy();
   });
 });

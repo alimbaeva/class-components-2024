@@ -11,13 +11,13 @@ describe('Page404', () => {
       </BrowserRouter>,
     );
 
-    // Проверяем, что заголовок страницы существует и содержит правильный текст
+    // Checking that the page title exists and contains the correct text
     const pageTitle = screen.getByRole('heading', {
       name: /this page does not exist/i,
     });
     expect(pageTitle).toBeInTheDocument();
 
-    // Проверяем, что ссылка на главную страницу существует и содержит правильный текст и путь
+    // We check that the link to the main page exists and contains the correct text and path
     const mainPageLink = screen.getByRole('link', { name: /main page/i });
     expect(mainPageLink).toBeInTheDocument();
     expect(mainPageLink).toHaveAttribute('href', '/'); // Проверяем, что ссылка ведет на корневой путь '/'
