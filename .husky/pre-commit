@@ -1,2 +1,2 @@
-npm run coverage
 npx lint-staged
+npm run coverage
