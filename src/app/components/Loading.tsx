@@ -3,7 +3,7 @@ import '../styles/loadung.css';
 
 const Loading = () => {
   return (
-    <section className="loader">
+    <section data-testid="loading" className="loader">
       <div className="loader-inner-block">
         <div className="loader-block">
           <div className="item1"></div>

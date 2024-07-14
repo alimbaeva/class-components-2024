@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format:fix": "prettier --write .",
     "test": "vitest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "date-fns": "^3.6.0",
@@ -59,8 +60,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run format:fix && npm run lint:styles && npm run lint:styles:fix && npm test",
       "pre-push": "npm test",
+      "pre-commit": "npm run lint && npm run format:fix && npm run lint:styles && npm run lint:styles:fix && npm test",
       "commit-msg": "npx validate-branch-name"
     }
   }

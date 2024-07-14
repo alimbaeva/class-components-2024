@@ -22,7 +22,7 @@ const DetailedDataCard: React.FC<CardPropsDetail> = ({
   }, []);
 
   return (
-    <section className="detailed-data-card">
+    <section data-testid="detailedData" className="detailed-data-card">
       <button
         className="close-detailed"
         onClick={() => handleCloseDetailedCard()}

@@ -7,6 +7,7 @@ const Card: React.FC<CardProps> = ({ data, handleCard }) => {
       id={data.url}
       className="answer-item"
       onClick={() => handleCard(data)}
+      data-testid="handleCard"
     >
       <p>{data.name}</p>
       <p>Gender: {data.gender}</p>

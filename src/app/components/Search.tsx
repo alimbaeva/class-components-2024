@@ -22,6 +22,7 @@ const Search: React.FC<SearchProps> = ({ handleSearch }) => {
         <form className="search-form" onSubmit={handleSubmit}>
           <label htmlFor="inputSearch">People:</label>
           <input
+            data-testid="inputSearch"
             id="inputSearch"
             type="text"
             value={inputValue}
