@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/pagination.css';
+import { useTheme } from './ThemeProvider';
 
 interface PropsPagination {
   allCount: number;
@@ -13,6 +14,7 @@ const Pagination: React.FC<PropsPagination> = ({
   handleSetPage,
   isSearchResult,
 }) => {
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,10 +46,23 @@ const Pagination: React.FC<PropsPagination> = ({
   }, [isSearchResult]);
 
   return (
-    <section className="container pagination">
-      <div className="pagination-block">
+    <section
+      className="container pagination"
+      data-testid="app-content"
+      style={{
+        background: theme === 'light' ? '#fff' : '#333',
+        color: theme === 'light' ? '#000' : '#fff',
+      }}
+    >
+      <div
+        className={
+          theme === 'light'
+            ? 'isLight pagination-block'
+            : 'isDark pagination-block'
+        }
+      >
         <button
-          className="btn-prev"
+          className={currentPage === 1 ? 'disabled btn-prev' : 'btn-prev'}
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -65,7 +80,9 @@ const Pagination: React.FC<PropsPagination> = ({
           );
         })}
         <button
-          className="btn-next"
+          className={
+            currentPage === totalPages ? 'disabled btn-next' : 'btn-next'
+          }
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >

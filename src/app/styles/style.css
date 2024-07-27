@@ -125,6 +125,20 @@
   background-color: aliceblue;
 }
 
+.theme-btn {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.theme-btn button {
+  width: 100%;
+  padding: 15px;
+  background-color: rgb(202, 234, 233);
+  border-radius: 15px;
+  border: none;
+}
+
 @media screen and (max-width: 430px) {
   .scontainer {
     width: 95%;

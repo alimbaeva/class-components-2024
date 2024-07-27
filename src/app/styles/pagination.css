@@ -22,8 +22,22 @@
   font-weight: 700;
 }
 
+.isLight button {
+  border-color: black;
+  color: black;
+}
+
+.isDark button {
+  border-color: white;
+  color: white;
+}
 .activ {
-  border: 2px solid rgb(90, 142, 90);
+  border: 3px solid rgb(90, 142, 90) !important;
+}
+
+.disabled {
+  color: rgb(129, 128, 128) !important;
+  border-color: rgb(129, 128, 128) !important;
 }
 
 @media screen and (max-width: 630px) {
