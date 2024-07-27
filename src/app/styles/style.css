@@ -1,0 +1,159 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  border-bottom: 1px solid rgb(190, 187, 187);
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.search-block {
+  padding: 40px 25px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.search-form {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form label {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.search-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  height: 30px;
+  font-size: 18px;
+  padding: 15px 8px;
+}
+
+.search-form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: white;
+  font-weight: 700;
+}
+
+.search-form button:hover {
+  background-color: black;
+  color: azure;
+}
+
+.answer-block {
+  padding: 0;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.answer-item {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.answer-item:hover {
+  border: 2px solid #8cc281;
+}
+
+.answer-item p {
+  margin: 6px;
+}
+
+.answer-item:nth-child(odd) {
+  background-color: rgb(190, 187, 187);
+}
+
+.errorBtn {
+  min-width: 60%;
+  padding: 10px;
+  background-color: white;
+  color: red;
+  font-weight: 700;
+}
+
+.errorBtn:hover {
+  background-color: black;
+}
+
+.error-throw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emty-message {
+  text-align: center;
+  margin: 25px;
+}
+
+.result-block {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-item {
+  width: 60%;
+  height: 100%;
+  background-color: aliceblue;
+}
+
+.theme-btn {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.theme-btn button {
+  width: 100%;
+  padding: 15px;
+  background-color: rgb(202, 234, 233);
+  border-radius: 15px;
+  border: none;
+}
+
+@media screen and (max-width: 430px) {
+  .scontainer {
+    width: 95%;
+  }
+
+  .errorBtn,
+  .search-form,
+  .answer-block,
+  .search-form {
+    width: 100%;
+  }
+
+  .result-block {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
